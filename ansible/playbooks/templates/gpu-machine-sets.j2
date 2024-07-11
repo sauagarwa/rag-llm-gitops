@@ -3,9 +3,9 @@ kind: MachineSet
 metadata:
   annotations:
     capacity.cluster-autoscaler.kubernetes.io/labels: kubernetes.io/arch=amd64
-    machine.openshift.io/GPU: "1"
-    machine.openshift.io/memoryMb: "65536"
-    machine.openshift.io/vCPU: "16"
+    machine.openshift.io/GPU: "8"
+    machine.openshift.io/memoryMb: "6786432536"
+    machine.openshift.io/vCPU: "96"
   labels:
     machine.openshift.io/cluster-api-cluster: {{ clusterId }}
   name: {{ clusterId }}-gpu-{{ cloudRegion }}
@@ -44,13 +44,13 @@ spec:
               kmsKey:
                 arn: ""
               volumeSize: 120
-              volumeType: gp3
+              volumeType: gp2
           credentialsSecret:
             name: aws-cloud-credentials
           deviceIndex: 0
           iamInstanceProfile:
             id: {{ clusterId }}-worker-profile
-          instanceType: g5.2xlarge
+          instanceType: dl1.24xlarge
           kind: AWSMachineProviderConfig
           metadata:
             creationTimestamp: null

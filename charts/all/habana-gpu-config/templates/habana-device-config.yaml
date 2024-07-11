@@ -1,0 +1,22 @@
+apiVersion: habana.ai/v1
+kind: DeviceConfig
+metadata:
+  name: deviceconfig-instance
+  namespace: habana-ai-operator
+spec:
+  devicePlugin:
+    image: vault.habana.ai/docker-k8s-device-plugin/docker-k8s-device-plugin
+    version: 1.10.0
+  driver:
+    image: vault.habana.ai/habana-ocp-operator/1.10.0/habana-ai-driver
+    version: 1.10.0-494
+  habanaRuntime:
+    image: vault.habana.ai/habana-ocp-operator/1.10.0/habana-runtime
+    version: 1.10.0-494
+  nodeMetrics:
+    image: vault.habana.ai/gaudi-metric-exporter/metric-exporter
+    version: 1.10.0-494
+  tolerations:
+    - effect: NoSchedule
+      key: odh-notebook
+      value: 'true'

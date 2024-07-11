@@ -6,8 +6,9 @@ clusterGroup:
     - vault
     - golang-external-secrets
     - openshift-nfd
-    - nvidia-gpu-operator
+    # - nvidia-gpu-operator
     - rag-llm
+    - habana-ai-operator
   subscriptions:
     # acm:
     #   name: advanced-cluster-management
@@ -18,10 +19,15 @@ clusterGroup:
       name: nfd
       namespace: openshift-nfd
       channel: stable
-    nvidia:
-      name: gpu-operator-certified
-      namespace: nvidia-gpu-operator
-      channel: v23.6
+    # nvidia:
+    #   name: gpu-operator-certified
+    #   namespace: nvidia-gpu-operator
+    #   channel: v23.6
+    #   source: certified-operators
+    habana:
+      name: habana-ai-operator
+      namespace: habana-ai-operator
+      channel: stable
       source: certified-operators
 
   projects:
@@ -89,11 +95,17 @@ clusterGroup:
       project: gpu-config
       path: charts/all/nfd-config
 
-    nvidia-config:
-      name: nvidia-config
-      namespace: nvidia-network-operator
+    # nvidia-config:
+    #   name: nvidia-config
+    #   namespace: nvidia-network-operator
+    #   project: gpu-config
+    #   path: charts/all/nvidia-gpu-config
+
+    habana-config:
+      name: habana-config
+      namespace: habana-ai-operator
       project: gpu-config
-      path: charts/all/nvidia-gpu-config
+      path: charts/all/habana-gpu-config
 
     llm-ui-config:
       name: rag-llm-ui-config
