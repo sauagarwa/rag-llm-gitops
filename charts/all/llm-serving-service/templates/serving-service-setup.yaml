@@ -167,26 +167,26 @@ spec:
           volumeMounts:
             - mountPath: /cache/models
               name: models
-        - args:
-            - -ec
-            - |-
-              echo -n 'Waiting for openshift-ai initialize'
-              while ! oc describe sub rhods-operator -n redhat-ods-operator 2>/dev/null | grep -qF rhods-operator; do
-                echo -n .
-                sleep 15
-              done; echo
-              echo -n 'openshift-ai initialized';echo
-              echo -n 'Waiting for dscinitialization/default-dsci to initialize'
-              echo
-              oc wait --for=jsonpath='{.status.phase}'=Ready --timeout=900s -n redhat-ods-operator dscinitialization/default-dsci
-              sleep 10
-              echo -n 'dscinitialization/default-dsci initialized';echo
-              sleep 30
-          command:
-            - /bin/bash
-          image: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
-          imagePullPolicy: IfNotPresent
-          name: wait-for-openshift
+        # - args:
+        #     - -ec
+        #     - |-
+        #       echo -n 'Waiting for openshift-ai initialize'
+        #       while ! oc describe sub rhods-operator -n redhat-ods-operator 2>/dev/null | grep -qF rhods-operator; do
+        #         echo -n .
+        #         sleep 15
+        #       done; echo
+        #       echo -n 'openshift-ai initialized';echo
+        #       echo -n 'Waiting for dscinitialization/default-dsci to initialize'
+        #       echo
+        #       oc wait --for=jsonpath='{.status.phase}'=Ready --timeout=900s -n redhat-ods-operator dscinitialization/default-dsci
+        #       sleep 10
+        #       echo -n 'dscinitialization/default-dsci initialized';echo
+        #       sleep 30
+        #   command:
+        #     - /bin/bash
+        #   image: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
+        #   imagePullPolicy: IfNotPresent
+        #   name: wait-for-openshift
       volumes:
         - name: models
           persistentVolumeClaim:
